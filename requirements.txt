@@ -1,0 +1,10 @@
+streamlit
+numpy
+folium
+streamlit_folium
+gensim
+matplotlib
+haversine
+sklearn
+pandas
+stop_words
