@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     articles = ArticlesGeo(data, topics, vec_articles)
 
-    st.title('Your swiss travel planner :snowboarder: :sunglasses:')
+    st.title('Your swiss day-travel planner :snowboarder: :sunglasses:')
     choices = st.multiselect('What kind of vacation are you looking for?', topics)
 
     col_activities, col_km = st.columns(2)
