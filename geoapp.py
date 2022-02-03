@@ -7,7 +7,7 @@ from recommender.User import User
 from recommender.Articles import ArticlesGeo
 
 
-CH_COOR = [46.8, 8.8]
+CH_COOR = [46.8, 8.8]  # coordinates of the center of Switzerland
 COLORS = ['red', 'blue', 'green', 'purple', 'orange', 'darkred',
           'lightred', 'beige', 'darkblue', 'darkgreen', 'cadetblue',
           'darkpurple', 'white', 'pink', 'lightblue', 'lightgreen', 'gray', 'black', 'lightgray']
@@ -48,7 +48,7 @@ if __name__ == '__main__':
 
     articles = ArticlesGeo(data, topics, vec_articles)
 
-    st.title('Your swiss travel planner :snowboarder: :sunglasses:')
+    st.title('Your swiss day-travel planner :snowboarder: :sunglasses:')
     choices = st.multiselect('What kind of vacation are you looking for?', topics)
 
     col_activities, col_km = st.columns(2)

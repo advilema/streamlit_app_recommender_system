@@ -1,7 +1,45 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 class User:
+    """
+    A class used to represent the User
+
+    ...
+
+    Attributes
+    ----------
+    topics : list(str)
+        The possible topics to describe the vacation type
+    choices : list(str)
+        The specific topics the user is interested in
+    vec : list(floats)
+        A vector representation of the user. The vector is normalized and each
+        weight is proportional to the interest of the user for a specific topic
+    seen_articles : list(int)
+        The indices of the articles that the user has already seen
+    learning_rate : float
+        Number between 0 and 1 that indicates how much the vector representation of the
+        user is changed by seeing new articles
+
+    Methods
+    -------
+    _make_vec()
+        Given choices and topics create vec
+    reset()
+        Reset the vec to its original state (by calling _make_vec())
+    get_seen_articles()
+        Return seen_articles
+    get_vec()
+        Return vec
+    update(articles)
+        Given a list of articles (represented as vector with length len(topics)) update vec
+    add_seen_articles(articles_ids)
+        Append to seen_articles new articles ids
+    plot_weights(save_path=None)
+        Plot vec in a horizontal bar char
+    """
     def __init__(self, topics, choices, learning_rate=0.1):  # 0<learning_rate<=1
         self.topics = topics
         self.choices = choices

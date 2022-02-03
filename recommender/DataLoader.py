@@ -4,6 +4,35 @@ from stop_words import get_stop_words
 
 
 class DataLoader:
+    """
+    Class used to load the data and make some preprocessing.
+    The data is a CSV file, containing a certain number of articles.
+
+    ...
+
+    Attributes
+    ----------
+    model : gensim.models.keyedvectors.KeyedVectors
+        NLP model used in the preprocessing
+    path : str
+        Path were the data are stored
+
+    Methods
+    -------
+    load()
+        Load the data from the path and drop nan values
+    load_preprocess(columns=['leadtext'])
+        Call load(), then preprocess the data saved in the columns and store the preprocessed data
+        in the column data['preprocessed]
+    _preprocess(doc)
+        doc is a string. Tokenize doc, remove stop_words
+    _tokenize(doc)
+        doc in a string. Tokenize doc
+    _remove_non_words(doc)
+        remove words that are not in the model dictionary
+
+    """
+
     def __init__(self, model=None, path='data/data.csv'):
         self.model = model
         if self.model is not None:
