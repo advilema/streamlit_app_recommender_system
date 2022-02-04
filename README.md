@@ -161,24 +161,32 @@ Learn to ski in the place where the world's top ski athletes compete: on Corvigl
 ```
 ![img.png](images/img5.png)
 
+In which proportion the article can be categorized as part of the different topics.
+
 ### Topics-based vector representation of the user
 As we did for the articles, we can get a topics-based vector representation of the user. In the first place this vector 
 representation is obtained by asking explicitly to the user which topics they prefer from the list of topics. Then, we 
-assign to the user a 1-norm vector, such that if they have chosen n topics, the weigths of the chosen topics will be 
-$\dfrac{1}{n}$, and the weights of the topics that has not been chosen will be zero.
+assign to the user a 1-norm vector, such that if they have chosen n topics, the weights of the chosen topics will be 
+1/n, and the weights of the topics that has not been chosen will be zero.<br>
+This vector should virtually represent in which proportion the user likes the different topics.
+
 
 ### User Update
-To learn from what kind of articles the user likes, thus providing recommendations that are more and more accurate, 
-the topics-base vector representation of the user can be updated. <br>
+We can learn what kind of articles the user likes, thus providing recommendations that are more and more accurate. 
+To do so, we need to update the topics-based vector representation of the user, that keeps track of the preferences of
+the user for the different articles. <br>
 In particular, if we know that the user likes a certain article, we can update the vector-based representation of the user
-by taking a weighted mean between the current vector representation of the user and the vector representation of the article 
+by taking a weighted mean between the current vector representation of the user, and the vector representation of the article 
 that they like.
 
 
 ### Recommendations based on the user
+Since the topics-based vector representation of the user indicates its preferences with respect to the topics, and the topics-based
+representation of the articles indicates how much an article is about each of the topics, we will recommend to the user 
+the articles that are as close as possible in the euclidean distance with respect to the user in the topics-based vector space.
 
 
-### Position based recommendations based on the user
+### Position-based recommendations based on the user
 
 
 
