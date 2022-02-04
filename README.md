@@ -2,16 +2,16 @@
 
 ## How to set-up the code
 
-### Clone the repository
+#### 1. Clone the repository
 Open the command line, go in a directory of your choice, and run:
 ```bash
 $ git clone https://git.unic.com/scm/aismtcu/recommender_system.git
 ```
 
-### Create virtual Python environment
+#### 2. Create virtual Python environment
 You need to have [Python3](https://www.python.org/) first. Follow the instruction corresponding to your operating system.
 
-#### Install the ```venv.recommender```(any name you like) environment using venv (only for python3)
+Install the ```venv.recommender```(any name you like) environment using venv (only for python3)
 ```bash
 $ python3 -m venv your_place/venv.recommender
 ```
@@ -19,22 +19,21 @@ If you encounter a problem, follow the instruction in the error message. You may
 ```bash
 $ source your_place/venv.scrapy/bin/activate
 ```
-#### Install required packages
+#### 3. Install required packages
 Install packages from `requirements.txt` in the *activated* environment
 
 ```bash
 (venv.recommender)$ cd recommender_system # go to the same folder as requirement.txt
 (venv.recommender)$ pip install -r requirements.txt
 ```
-#### Deactivate virtual environment
+#### 4. Deactivate virtual environment
 The virtual environment can be deactivated at any time with
 
 ```bash
 (venv.recommender)$ deactivate
-```
 
-## How to Use The App
-### Run the app
+```
+#### 5. Run the app
 ```bash
 (venv.recommender)$ cd recommender_system/ # stay in the same folder as scrapy.cfg
 (venv.recommender)$ streamlit run app.py
@@ -43,6 +42,9 @@ The virtual environment can be deactivated at any time with
 This should open your favourite browser and launch the app on your local host 8501. <br>
 Look at the image below to see how the page should look like.
 ![img.png](images/img1.png)
+
+
+## How to Use The App
 
 ### Use the app
 #### 1. Choose the topics
@@ -117,8 +119,52 @@ To change this run:
 (venv.recommender)$ python initialize.py --model_name THE_MODEL_YOU_LIKE_THE_MOST
 ```
 
-## How the Code Works
-For a demo on how to use all of the different classes that you can find into the folder _recommender_ look at the
-_Notebook.ipynb_ that you can use as a playground to experiment with the code.
+## How To Use the Code
+For a demo on how to use all the different classes that you can find into the folder _recommender_ look at the
+_Notebook.ipynb_ that you can use as a playground to experiment with the code. <br>
+This operation is done by the _DataLoader_.
 
 ## General Theoretical Overview
+### Text Pre-Processing
+Before being able to use the articles (that are saved into the _data/data.csv_ file) for our recommender system, we need 
+to preprocess the text into the articles. In particular, we remove from the articles all the stop_words (words that do 
+not add meaning to the text, such as "and", "or", "then", "therefore", etc.) and words that are misspelled, and we
+tokenize the words in the article getting a vector of words for each article.
+
+### Word embedding
+The word embedding is a technique that allows the representation of the words as real valued vectors, 
+such that the words that are closer in the vector space are expected to be similar in meaning and context.
+For more information on the topic check the [Wikipedia page](https://en.wikipedia.org/wiki/Word_embedding).
+
+In our case, we used the _word2vec_ model for word embedding.
+
+### Clustering method for topics generation
+A clustering method (KMeans, find more information about how it works [here](https://de.wikipedia.org/wiki/K-Means-Algorithmus))
+have been used to cluster the words from all the articles (that are saved into _data/data.csv_) to detect which are the 
+predominant topics into the articles. <br>
+The class _Clustering_ that has been used to perform the clustering is in the 
+file _recommender/Clustering.py_.
+
+### Topics based vector representation of the articles
+Once generated the topics with the clustering, eliminated the non-relevant ones, and integrated them with topics from the
+MySwitzerland.com newsletter we can generate a vector representation of the articles based on how similar they are to the
+given topic. <br>
+To generate these topics based vector representation for an article, we follow the following steps:
+1. we get the word embedding vector of all the words in the preprocessed article;
+2. we get the word embedding vector of all the topics in the topics list
+3. for each topic we compute the sum of the distances between the topic vector and all the word vectors in the article
+4. at this point, given an article, for every topic we have a score. We normalize these scores with respect
+to the sum of the scores, so that for each article their topics based vector representation is a 1-norm vector.
+   
+Example:
+```
+Learn to ski in the place where the world's top ski athletes 
+compete: on Corviglia above St. Moritz. Your first ski lesson is 
+rewarded with a carriage ride to the slope and back.
+```
+![img.png](images/img5.png)
+
+### Position Based Recommendation
+
+
+

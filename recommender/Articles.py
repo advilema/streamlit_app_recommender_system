@@ -87,12 +87,13 @@ class Articles:
         if print_content:
             print(self.content[idx])
 
-        plt.figure(figsize=[10, 5])
+        fig = plt.figure(figsize=[10, 5])
         plt.barh([i for i in range(len(self.topics))], self.vec_by_topics[idx])
         plt.yticks(ticks=np.arange(len(self.topics)), labels=self.topics)
-        plt.show()
         if save_path is not None:
             plt.savefig(save_path)
+        else:
+            plt.show()
 
     def _dist_articles_user(self, user):
         return norm(np.array(self.vec_by_topics) - np.array(user.vec), axis=1)
@@ -207,7 +208,9 @@ class ArticlesModel(Articles):
 
         scores.sort(key=lambda x: x[0], reverse=True)
         selected = np.array(scores[:top_n])
-        return selected.transpose()[1]
+        ids_top_articles = selected.transpose()[1]
+        ids_top_articles = [int(idx) for idx in ids_top_articles]
+        return ids_top_articles
 
 
 class ArticlesGeo(ArticlesVec):
