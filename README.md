@@ -157,13 +157,28 @@ to the sum of the scores, so that for each article their topics-based vector rep
    
 Example:
 ```
-Learn to ski in the place where the world's top ski athletes 
-compete: on Corviglia above St. Moritz. Your first ski lesson is 
-rewarded with a carriage ride to the slope and back.
+Learn to ski in the place where the world's top ski athletes compete: on Corviglia above St. Moritz. Your first ski lesson is rewarde with a carriage ride to the slope and back.
 ```
 ![img.png](images/img5.png)
 
-### Position Based Recommendations
+### Topics-based vector representation of the user
+As we did for the articles, we can get a topics-based vector representation of the user. In the first place this vector 
+representation is obtained by asking explicitly to the user which topics they prefer from the list of topics. Then, we 
+assign to the user a 1-norm vector, such that if they have chosen n topics, the weigths of the chosen topics will be 
+$\dfrac{1}{n}$, and the weights of the topics that has not been chosen will be zero.
+
+### User Update
+To learn from what kind of articles the user likes, thus providing recommendations that are more and more accurate, 
+the topics-base vector representation of the user can be updated. <br>
+In particular, if we know that the user likes a certain article, we can update the vector-based representation of the user
+by taking a weighted mean between the current vector representation of the user and the vector representation of the article 
+that they like.
+
+
+### Recommendations based on the user
+
+
+### Position based recommendations based on the user
 
 
 
