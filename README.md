@@ -1,6 +1,6 @@
 # Recommender System
 
-## How to Run the code
+## How to set-up the code
 
 ### Clone the repository
 Open the command line, go in a directory of your choice, and run:
@@ -120,3 +120,5 @@ To change this run:
 ## How the Code Works
 For a demo on how to use all of the different classes that you can find into the folder _recommender_ look at the
 _Notebook.ipynb_ that you can use as a playground to experiment with the code.
+
+## General Theoretical Overview
