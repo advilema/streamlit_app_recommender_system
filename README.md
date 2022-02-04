@@ -46,7 +46,6 @@ Look at the image below to see how the page should look like.
 
 ## How to Use The App
 
-### Use the app
 #### 1. Choose the topics
 Under the question 'What kind of vacation are you looking for?' you can choose different topics for your vacation style.
 The ones available at the moment are:
@@ -69,7 +68,7 @@ look something like this:
 * The combinations of activities recommended are sorted by _Similarity Score_.
 * For each combination of activities you can see the titles of the activities. Clicking on the title it will expand
 showing you a description of the activity.
-* Every combination of activities has a colour (the big circle before the Similarity Score). 
+* Every combination of activities has a colour (the colour of the big circle before the Similarity Score). 
 In the map at the end of the page you can find the activities looking at their colours.
 * The map is interactive, you can zoom in and out.
 
@@ -186,7 +185,25 @@ representation of the articles indicates how much an article is about each of th
 the articles that are as close as possible in the euclidean distance with respect to the user in the topics-based vector space.
 
 
-### Position-based recommendations based on the user
+### Recommendations of combinations of articles, based on the user and the position
+To generate better results for the user, we can suggest combinations of articles, instead of single articles (remember 
+that each article represent an activity that the user can do, so combining many articles, means combining many activities
+that the user can do perhaps during a vacation). This is particularly relevant when the topics that the user choose
+are varied, and there is not a single activity that can cover them all. An example could be if the user is looking
+for 'Ski' and 'Spa'. <br>
+However, would be very unpractical if the user would be recommended to do a combination of activities that are very far within
+each others, or a combination with a number of activities that are more than the ones that they can actually do. For this
+reason, we allow the user to specify the maximum number of activities that they want to do, and the maximum distance 
+between activities.
 
+To generate Recommendations of combinations of articles, based on the user and the position we follow these steps:
+1. generate the recommendations based on the user as explained above. Take only the first n best recommendations;
+2. generate all the possible combinations of the articles, such as in a combination there is a number of articles that is
+lower than the maximum number of activities decided by the user, and the positions of the activities described by the 
+articles is lower than the maximum distance decided by the user;
+3. take the mean of the vector based representation of the articles within a combination to get the vector based representation
+of the combination. Check which combinations are as close as possible in the euclidean distance to the user in the topics-based
+vector space.
+   
 
 
