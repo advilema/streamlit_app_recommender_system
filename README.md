@@ -164,7 +164,7 @@ rewarded with a carriage ride to the slope and back.
 ```
 ![img.png](images/img5.png)
 
-### Position Based Recommendation
+### Position Based Recommendations
 
 
 
