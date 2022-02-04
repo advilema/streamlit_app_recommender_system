@@ -129,7 +129,7 @@ This operation is done by the _DataLoader_.
 Before being able to use the articles (that are saved into the _data/data.csv_ file) for our recommender system, we need 
 to preprocess the text into the articles. In particular, we remove from the articles all the stop_words (words that do 
 not add meaning to the text, such as "and", "or", "then", "therefore", etc.) and words that are misspelled, and we
-tokenize the words in the article getting a vector of words for each article.
+tokenize the article. This gives us a vector of words for each article.
 
 ### Word embedding
 The word embedding is a technique that allows the representation of the words as real valued vectors, 
@@ -140,21 +140,20 @@ In our case, we used the _word2vec_ model for word embedding.
 
 ### Clustering method for topics generation
 A clustering method (KMeans, find more information about how it works [here](https://de.wikipedia.org/wiki/K-Means-Algorithmus))
-have been used to cluster the words from all the articles (that are saved into _data/data.csv_) to detect which are the 
-predominant topics into the articles. <br>
+has been used to cluster the words from all the articles to detect which are the predominant topics in the articles. <br>
 The class _Clustering_ that has been used to perform the clustering is in the 
 file _recommender/Clustering.py_.
 
-### Topics based vector representation of the articles
-Once generated the topics with the clustering, eliminated the non-relevant ones, and integrated them with topics from the
-MySwitzerland.com newsletter we can generate a vector representation of the articles based on how similar they are to the
+### Topics-based vector representation of the articles
+Once we generated the topics with the clustering, eliminated the non-relevant ones, and integrated them with topics from the
+MySwitzerland.com newsletter, we can generate a vector representation of the articles based on how similar they are to the
 given topic. <br>
-To generate these topics based vector representation for an article, we follow the following steps:
+To generate the topics-based vector representation for an article, we follow the following steps:
 1. we get the word embedding vector of all the words in the preprocessed article;
-2. we get the word embedding vector of all the topics in the topics list
-3. for each topic we compute the sum of the distances between the topic vector and all the word vectors in the article
+2. we get the word embedding vector of all the topics in the topics list;
+3. for each topic we compute the sum of the distances between the topic vector and all the word vectors in the article;
 4. at this point, given an article, for every topic we have a score. We normalize these scores with respect
-to the sum of the scores, so that for each article their topics based vector representation is a 1-norm vector.
+to the sum of the scores, so that for each article their topics-based vector representation is a 1-norm vector.
    
 Example:
 ```
