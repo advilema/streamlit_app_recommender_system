@@ -1,5 +1,7 @@
 # Recommender System
 
+Web browser App [here](https://share.streamlit.io/advilema/streamlit_app_recommender_system/main/app.py).
+
 ## How to set-up the code
 
 #### 1. Clone the repository
